@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE30072C202354D4005E5526 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE30072B202354D4005E5526 /* FeedbackCell.xib */; };
+		FE30072E20235519005E5526 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30072D20235519005E5526 /* FeedbackCell.swift */; };
 		FE852CF1202327160076D118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF0202327160076D118 /* AppDelegate.swift */; };
 		FE852CF3202327160076D118 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF2202327160076D118 /* ViewController.swift */; };
 		FE852CF6202327160076D118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF4202327160076D118 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE30072B202354D4005E5526 /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
+		FE30072D20235519005E5526 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
 		FE852CED202327160076D118 /* feedbackManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feedbackManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE852CF0202327160076D118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE852CF2202327160076D118 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 		FE852CEF202327160076D118 /* feedbackManager */ = {
 			isa = PBXGroup;
 			children = (
+				FE30072B202354D4005E5526 /* FeedbackCell.xib */,
+				FE30072D20235519005E5526 /* FeedbackCell.swift */,
 				FE852CF0202327160076D118 /* AppDelegate.swift */,
 				FE852CF2202327160076D118 /* ViewController.swift */,
 				FE852CF4202327160076D118 /* Main.storyboard */,
@@ -125,6 +131,7 @@
 			files = (
 				FE852CFB202327160076D118 /* LaunchScreen.storyboard in Resources */,
 				FE852CF8202327160076D118 /* Assets.xcassets in Resources */,
+				FE30072C202354D4005E5526 /* FeedbackCell.xib in Resources */,
 				FE852CF6202327160076D118 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE852CF3202327160076D118 /* ViewController.swift in Sources */,
+				FE30072E20235519005E5526 /* FeedbackCell.swift in Sources */,
 				FE852CF1202327160076D118 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

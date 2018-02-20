@@ -7,18 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FE30072C202354D4005E5526 /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE30072B202354D4005E5526 /* FeedbackCell.xib */; };
-		FE30072E20235519005E5526 /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30072D20235519005E5526 /* FeedbackCell.swift */; };
+		FE30072C202354D4005E5526 /* FeedbackSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */; };
+		FE30072E20235519005E5526 /* FeedbackSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */; };
 		FE852CF1202327160076D118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF0202327160076D118 /* AppDelegate.swift */; };
 		FE852CF3202327160076D118 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF2202327160076D118 /* ViewController.swift */; };
 		FE852CF6202327160076D118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF4202327160076D118 /* Main.storyboard */; };
 		FE852CF8202327160076D118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF7202327160076D118 /* Assets.xcassets */; };
 		FE852CFB202327160076D118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF9202327160076D118 /* LaunchScreen.storyboard */; };
+		FEA444DE203C489500EEE54C /* FeedbackTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA444DD203C489500EEE54C /* FeedbackTypes.swift */; };
+		FEA85BEB203C385D00C2D5C0 /* FeedbackCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA85BEA203C385D00C2D5C0 /* FeedbackCommentCell.xib */; };
+		FEA85BED203C388C00C2D5C0 /* FeedbackCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA85BEC203C388C00C2D5C0 /* FeedbackCommentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FE30072B202354D4005E5526 /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
-		FE30072D20235519005E5526 /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
+		FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackSummaryCell.xib; sourceTree = "<group>"; };
+		FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSummaryCell.swift; sourceTree = "<group>"; };
 		FE852CED202327160076D118 /* feedbackManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feedbackManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE852CF0202327160076D118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE852CF2202327160076D118 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 		FE852CF7202327160076D118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE852CFA202327160076D118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE852CFC202327160076D118 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEA444DD203C489500EEE54C /* FeedbackTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTypes.swift; sourceTree = "<group>"; };
+		FEA85BEA203C385D00C2D5C0 /* FeedbackCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCommentCell.xib; sourceTree = "<group>"; };
+		FEA85BEC203C388C00C2D5C0 /* FeedbackCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCommentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +64,11 @@
 		FE852CEF202327160076D118 /* feedbackManager */ = {
 			isa = PBXGroup;
 			children = (
-				FE30072B202354D4005E5526 /* FeedbackCell.xib */,
-				FE30072D20235519005E5526 /* FeedbackCell.swift */,
+				FEA444DD203C489500EEE54C /* FeedbackTypes.swift */,
+				FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */,
+				FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */,
+				FEA85BEC203C388C00C2D5C0 /* FeedbackCommentCell.swift */,
+				FEA85BEA203C385D00C2D5C0 /* FeedbackCommentCell.xib */,
 				FE852CF0202327160076D118 /* AppDelegate.swift */,
 				FE852CF2202327160076D118 /* ViewController.swift */,
 				FE852CF4202327160076D118 /* Main.storyboard */,
@@ -131,8 +140,9 @@
 			files = (
 				FE852CFB202327160076D118 /* LaunchScreen.storyboard in Resources */,
 				FE852CF8202327160076D118 /* Assets.xcassets in Resources */,
-				FE30072C202354D4005E5526 /* FeedbackCell.xib in Resources */,
+				FE30072C202354D4005E5526 /* FeedbackSummaryCell.xib in Resources */,
 				FE852CF6202327160076D118 /* Main.storyboard in Resources */,
+				FEA85BEB203C385D00C2D5C0 /* FeedbackCommentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,8 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA85BED203C388C00C2D5C0 /* FeedbackCommentCell.swift in Sources */,
+				FEA444DE203C489500EEE54C /* FeedbackTypes.swift in Sources */,
 				FE852CF3202327160076D118 /* ViewController.swift in Sources */,
-				FE30072E20235519005E5526 /* FeedbackCell.swift in Sources */,
+				FE30072E20235519005E5526 /* FeedbackSummaryCell.swift in Sources */,
 				FE852CF1202327160076D118 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

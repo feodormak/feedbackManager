@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FeedbackEntryCell" customModule="feedbackManager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKH-xl-nRn">
+                    <rect key="frame" x="8" y="22" width="60" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uwm-zT-Tvn">
+                    <rect key="frame" x="187" y="22" width="180" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="(required)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HH-Rp-vNe">
+                    <rect key="frame" x="72" y="22" width="82" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="iKH-xl-nRn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Pum-a0-eVP"/>
+                <constraint firstItem="iKH-xl-nRn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="TUi-jY-etT"/>
+                <constraint firstItem="Uwm-zT-Tvn" firstAttribute="leading" secondItem="0HH-Rp-vNe" secondAttribute="trailing" constant="4" id="UTy-BP-tin"/>
+                <constraint firstItem="Uwm-zT-Tvn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ubt-KC-okB"/>
+                <constraint firstItem="0HH-Rp-vNe" firstAttribute="leading" secondItem="iKH-xl-nRn" secondAttribute="trailing" constant="4" id="cln-lL-6m5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Uwm-zT-Tvn" secondAttribute="trailing" constant="8" id="meY-pm-aY9"/>
+                <constraint firstItem="0HH-Rp-vNe" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="qha-sv-RIu"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="entryLabel" destination="Uwm-zT-Tvn" id="Lp9-QM-eC3"/>
+                <outlet property="requiredLabel" destination="0HH-Rp-vNe" id="K4v-kb-YR5"/>
+                <outlet property="titleLabel" destination="iKH-xl-nRn" id="UoE-jF-WU5"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="-247"/>
+        </view>
+    </objects>
+</document>

@@ -6,7 +6,7 @@
 //  Copyright © 2018 feodor. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 //redef, to be deleted
 enum SideMenuPageType {
@@ -48,40 +48,89 @@ enum BodyType {
     case terrain
     case weather
 }
+
+extension UIColor{
+    static let baseColor = UIColor(netHex: 0x3b4656)
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
+    
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+}
 //end of redef
 
 enum FeedbackMangerConstants {
-    static let categoryType:[String:SideMenuPageType] = ["Stations":.stations,"Reference":.reference]
+    static let categoryType:[SideMenuPageType:String] = [.stations:"Stations",.reference:"Reference"]
     static let stationSectionLabels = ["Details", "Warning", "Caution", "Notes", "Pre-flight", "Enroute", "Arrival", "Approach", "Ground Ops", "Departure", "Terrain", "Weather", "Diversion"]
-    static let typeLabel:[FeedbackType:String] = [ .new:"New",.exisitng: "Existing"]
+    static let typeLabel:[FeedbackType:String] = [ .suggestion:"Suggestion",.exisitng: "Exisiting content"]
+    static let textViewPlaceholder = "Enter comments"
+    static let contentHeaderText = "Current Content"
+    static let commentHeaderText = "Comments"
+    static let deleteWarningTitle = "Deleting feedback"
+    static let deleteWarningText = "Are you sure you want to delete?"
+    static let deleteText = "Delete"
+    static let cancelText = "Cancel"
     
+    static let headerTitleLabelFontColor = UIColor.white
+    static let requiredLabelFontColor = UIColor.red.withAlphaComponent(0.7)
+    static let entryLabelFontColor = UIColor.darkGray
     
+    static let titleLabelFont = UIFont.systemFont(ofSize: 17)
+    static let requiredLabelFont = UIFont.systemFont(ofSize: 16)
+    static let entryLabelFont = UIFont.systemFont(ofSize: 16)
     //test data
-    static let stationsID = ["WSSS", " WAAA", "WIPP", "RPVM", "ZUUU", "VTSP", "ZUCK", "VECC", "VOMM", "VOHS", "WMKK"]
-    static let referenceSection = ["CTAF Ops", "ADS-B", "TCAS Requirements", "FANS - Using CPDLC to Relay Messages"]
-    static let referenceSubSections = [ ["CTAF Procedures", "Pilot Activated Lighting(PAL)","Non-towered Aerodromes"],
-                                        ["Procedure","Flight Planning","Emergency","System Malfunction"],
-                                        ["Requirements"],
-                                        ["Areas of Operations"]]
+    static let stationsID = ["WSSS", "WAAA", "WIPP", "RPVM", "ZUUU", "VTSP", "ZUCK", "VECC", "VOMM", "VOHS", "WMKK"]
+    
+    static let referenceID = ["CTAFOPS":"CTAF Ops", "ADSBOPS":"ADS-B","TCASREQ":"TCAS Requirements","FANSOPS":"FANS - Using CPDLC to Relay Messages"]
+    static let referenceSection: [String:[String] ] = ["CTAFOPS":["CTAF Procedures", "Pilot Activated Lighting(PAL)","Non-towered Aerodromes"], "ADSBOPS":["Procedure","Flight Planning","Emergency","System Malfunction"], "TCASREQ":["Requirements"], "FANSOPS":["Areas of Operations"]]
 }
 
 
 enum FeedbackType {
-    case new
+    case suggestion
     case exisitng
 }
 
+enum FeedbackButtons{
+    case category
+    case page
+    case section
+}
+
 class FeedbackItem {
-    let feedbackType: FeedbackType
-    let page: Page
-    let section: String
+    var feedbackType: FeedbackType
+    var pageType: SideMenuPageType?
+    var refID: String?
+    var section: String?
     let contentID: String?
-    let comments: String = ""
+    var comments: String?
     
-    init(feedbackType: FeedbackType, pageType: SideMenuPageType, pageID: String, section: String, contentID: String? = nil){
+    init(feedbackType: FeedbackType, pageType: SideMenuPageType? = nil, refID: String? = nil, section: String? = nil, contentID: String? = nil){
         self.feedbackType = feedbackType
-        self.page = Page(pageID: pageID, pageType: pageType)
+        self.pageType = pageType
+        self.refID = refID
         self.section = section
         self.contentID = contentID
     }
 }
+
+extension UIView {
+    
+    func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 3
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x:self.center.x - 10, y:self.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x:self.center.x + 10, y:self.center.y))
+        self.layer.add(animation, forKey: "position")
+    }
+    
+}
+

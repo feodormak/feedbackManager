@@ -7,31 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE09788D203D6852002B3CDE /* FeedbackEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09788C203D6852002B3CDE /* FeedbackEditorViewController.swift */; };
+		FE09788F203D81A0002B3CDE /* FeedbackTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09788E203D81A0002B3CDE /* FeedbackTextCell.swift */; };
+		FE097891203D81B4002B3CDE /* FeedbackTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE097890203D81B4002B3CDE /* FeedbackTextCell.xib */; };
+		FE0EB718203E773E0065218E /* FeedbackEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0EB717203E773E0065218E /* FeedbackEntryCell.swift */; };
+		FE0EB71A203E77570065218E /* FeedbackEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE0EB719203E77570065218E /* FeedbackEntryCell.xib */; };
+		FE0EB71C203E93750065218E /* FeedbackHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE0EB71B203E93750065218E /* FeedbackHeader.xib */; };
+		FE0EB71E203E93860065218E /* FeedbackHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0EB71D203E93860065218E /* FeedbackHeader.swift */; };
 		FE30072C202354D4005E5526 /* FeedbackSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */; };
 		FE30072E20235519005E5526 /* FeedbackSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */; };
 		FE852CF1202327160076D118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF0202327160076D118 /* AppDelegate.swift */; };
-		FE852CF3202327160076D118 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF2202327160076D118 /* ViewController.swift */; };
+		FE852CF3202327160076D118 /* FeedbackManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF2202327160076D118 /* FeedbackManagerViewController.swift */; };
 		FE852CF6202327160076D118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF4202327160076D118 /* Main.storyboard */; };
 		FE852CF8202327160076D118 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF7202327160076D118 /* Assets.xcassets */; };
 		FE852CFB202327160076D118 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF9202327160076D118 /* LaunchScreen.storyboard */; };
 		FEA444DE203C489500EEE54C /* FeedbackTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA444DD203C489500EEE54C /* FeedbackTypes.swift */; };
-		FEA85BEB203C385D00C2D5C0 /* FeedbackCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA85BEA203C385D00C2D5C0 /* FeedbackCommentCell.xib */; };
-		FEA85BED203C388C00C2D5C0 /* FeedbackCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA85BEC203C388C00C2D5C0 /* FeedbackCommentCell.swift */; };
+		FECFB7EA203C7A5F009D192F /* ListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFB7E9203C7A5F009D192F /* ListTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE09788C203D6852002B3CDE /* FeedbackEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEditorViewController.swift; sourceTree = "<group>"; };
+		FE09788E203D81A0002B3CDE /* FeedbackTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTextCell.swift; sourceTree = "<group>"; };
+		FE097890203D81B4002B3CDE /* FeedbackTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackTextCell.xib; sourceTree = "<group>"; };
+		FE0EB717203E773E0065218E /* FeedbackEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackEntryCell.swift; sourceTree = "<group>"; };
+		FE0EB719203E77570065218E /* FeedbackEntryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackEntryCell.xib; sourceTree = "<group>"; };
+		FE0EB71B203E93750065218E /* FeedbackHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackHeader.xib; sourceTree = "<group>"; };
+		FE0EB71D203E93860065218E /* FeedbackHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackHeader.swift; sourceTree = "<group>"; };
 		FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackSummaryCell.xib; sourceTree = "<group>"; };
 		FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSummaryCell.swift; sourceTree = "<group>"; };
 		FE852CED202327160076D118 /* feedbackManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feedbackManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE852CF0202327160076D118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE852CF2202327160076D118 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FE852CF2202327160076D118 /* FeedbackManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManagerViewController.swift; sourceTree = "<group>"; };
 		FE852CF5202327160076D118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE852CF7202327160076D118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE852CFA202327160076D118 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE852CFC202327160076D118 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FEA444DD203C489500EEE54C /* FeedbackTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackTypes.swift; sourceTree = "<group>"; };
-		FEA85BEA203C385D00C2D5C0 /* FeedbackCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCommentCell.xib; sourceTree = "<group>"; };
-		FEA85BEC203C388C00C2D5C0 /* FeedbackCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCommentCell.swift; sourceTree = "<group>"; };
+		FECFB7E9203C7A5F009D192F /* ListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,10 +79,16 @@
 				FEA444DD203C489500EEE54C /* FeedbackTypes.swift */,
 				FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */,
 				FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */,
-				FEA85BEC203C388C00C2D5C0 /* FeedbackCommentCell.swift */,
-				FEA85BEA203C385D00C2D5C0 /* FeedbackCommentCell.xib */,
+				FE0EB71D203E93860065218E /* FeedbackHeader.swift */,
+				FE0EB71B203E93750065218E /* FeedbackHeader.xib */,
+				FE0EB717203E773E0065218E /* FeedbackEntryCell.swift */,
+				FE0EB719203E77570065218E /* FeedbackEntryCell.xib */,
+				FE09788E203D81A0002B3CDE /* FeedbackTextCell.swift */,
+				FE097890203D81B4002B3CDE /* FeedbackTextCell.xib */,
 				FE852CF0202327160076D118 /* AppDelegate.swift */,
-				FE852CF2202327160076D118 /* ViewController.swift */,
+				FE852CF2202327160076D118 /* FeedbackManagerViewController.swift */,
+				FE09788C203D6852002B3CDE /* FeedbackEditorViewController.swift */,
+				FECFB7E9203C7A5F009D192F /* ListTableView.swift */,
 				FE852CF4202327160076D118 /* Main.storyboard */,
 				FE852CF7202327160076D118 /* Assets.xcassets */,
 				FE852CF9202327160076D118 /* LaunchScreen.storyboard */,
@@ -141,8 +159,10 @@
 				FE852CFB202327160076D118 /* LaunchScreen.storyboard in Resources */,
 				FE852CF8202327160076D118 /* Assets.xcassets in Resources */,
 				FE30072C202354D4005E5526 /* FeedbackSummaryCell.xib in Resources */,
+				FE097891203D81B4002B3CDE /* FeedbackTextCell.xib in Resources */,
 				FE852CF6202327160076D118 /* Main.storyboard in Resources */,
-				FEA85BEB203C385D00C2D5C0 /* FeedbackCommentCell.xib in Resources */,
+				FE0EB71A203E77570065218E /* FeedbackEntryCell.xib in Resources */,
+				FE0EB71C203E93750065218E /* FeedbackHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,10 +173,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEA85BED203C388C00C2D5C0 /* FeedbackCommentCell.swift in Sources */,
+				FE09788F203D81A0002B3CDE /* FeedbackTextCell.swift in Sources */,
+				FE0EB718203E773E0065218E /* FeedbackEntryCell.swift in Sources */,
+				FECFB7EA203C7A5F009D192F /* ListTableView.swift in Sources */,
+				FE0EB71E203E93860065218E /* FeedbackHeader.swift in Sources */,
 				FEA444DE203C489500EEE54C /* FeedbackTypes.swift in Sources */,
-				FE852CF3202327160076D118 /* ViewController.swift in Sources */,
+				FE852CF3202327160076D118 /* FeedbackManagerViewController.swift in Sources */,
 				FE30072E20235519005E5526 /* FeedbackSummaryCell.swift in Sources */,
+				FE09788D203D6852002B3CDE /* FeedbackEditorViewController.swift in Sources */,
 				FE852CF1202327160076D118 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

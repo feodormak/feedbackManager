@@ -13,7 +13,8 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     private var tableView = UITableView()
     private var editorNavigationController = UINavigationController()
     private let feedbackEditorViewController = FeedbackEditorViewController()
-    private let navigationBar = UINavigationBar(frame: CGRect.zero)
+    private let navigationBar = UINavigationBar(frame: .zero)
+    private let toolBar = UIToolbar(frame: .zero)
     
     private var feedbackItems:[[FeedbackItem]] = [[],[]]
     private var selectedIndexPaths = [IndexPath]() {
@@ -31,6 +32,7 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
+        self.setupToolbar()
         self.tableViewSetup()
         self.feedbackEditorViewController.delegate = self
         self.selectedIndexPaths.removeAll()
@@ -56,7 +58,7 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     @objc private func deleteFeedback() {
         if self.tableView.isEditing == true {
             self.deleteFeedbackWithAlert {
-                self.tableView.setEditing(false, animated: true)
+                //self.tableView.setEditing(false, animated: true)
                 self.addButton.isEnabled = true
                 self.closeButton.isEnabled = true
                 if self.selectedIndexPaths.isEmpty != true {
@@ -64,15 +66,18 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
                     var itemsToDelete: [[FeedbackItem]] = [[],[]]
                     
                     self.selectedIndexPaths.forEach{ itemsToDelete[$0.section].append(self.feedbackItems[$0.section][$0.row]) }
+                    self.tableView.beginUpdates()
                     itemsToDelete.enumerated().forEach{
                         let index = $0.offset
                         $0.element.forEach{
                             let item = $0
                             self.feedbackItems[index] = self.feedbackItems[index].filter{ $0 != item }
                         }
+                        self.tableView.reloadSections(IndexSet(integer: index), with: .fade)
                     }
-                    self.tableView.reloadData()
-                    self.selectedIndexPaths.removeAll()
+                    self.tableView.endUpdates()
+                    
+                    self.editFeedback()
                 }
             }
         }
@@ -80,8 +85,8 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     @objc private func editFeedback() {
         self.selectedIndexPaths.removeAll()
         self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-        self.editButton.title = self.tableView.isEditing ? "Cancel" : "Edit"
-        self.selectAllButton.title = self.tableView.isEditing ? "Select all" : ""
+        self.editButton.title = self.tableView.isEditing ? FeedbackMangerConstants.cancelText : FeedbackMangerConstants.editText
+        self.selectAllButton.title = self.tableView.isEditing ? FeedbackMangerConstants.selectAllText : nil
         self.selectAllButton.isEnabled = self.tableView.isEditing ? true : false
         self.addButton.isEnabled = self.tableView.isEditing ? false : true
         self.closeButton.isEnabled = self.tableView.isEditing ? false : true
@@ -110,18 +115,31 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         NSLayoutConstraint(item: self.navigationBar, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: self.navigationBar, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: self.navigationBar, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: self.navigationBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 64).isActive = true
+        NSLayoutConstraint(item: self.navigationBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: FeedbackMangerConstants.navigationBarHeight).isActive = true
         
-        let navigationItem = UINavigationItem(title: "Feedback")
-    
-        //let spacerButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
+        let navigationItem = UINavigationItem(title: FeedbackMangerConstants.title)
+
         navigationItem.leftBarButtonItems = [self.addButton, self.selectAllButton]
         navigationItem.rightBarButtonItems = [self.closeButton, self.editButton, self.deleteButton]
         self.navigationBar.setItems([navigationItem], animated: false)
         
         self.navigationBar.barTintColor = UIColor.baseColor
         self.navigationBar.tintColor = UIColor.white
+        self.navigationBar.titleTextAttributes = FeedbackMangerConstants.titleAttributes
+    }
+    
+    private func setupToolbar() {
+        self.view.addSubview(self.toolBar)
+        self.toolBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        NSLayoutConstraint(item: self.toolBar, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: self.toolBar, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: self.toolBar, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: self.toolBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: FeedbackMangerConstants.toolbarHeight).isActive = true
+        
+        self.toolBar.barTintColor = UIColor.baseColor
+        self.toolBar.setItems(nil, animated: false)
     }
     
     private func tableViewSetup(){
@@ -131,7 +149,7 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         NSLayoutConstraint(item: self.tableView, attribute: .top, relatedBy: .equal, toItem: self.navigationBar, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: self.tableView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 8).isActive = true
         NSLayoutConstraint(item: self.tableView, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: -8).isActive = true
-        NSLayoutConstraint(item: self.tableView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: self.tableView, attribute: .bottom, relatedBy: .equal, toItem: self.toolBar, attribute: .top, multiplier: 1, constant: 0).isActive = true
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -142,6 +160,7 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.tableFooterView = UIView()
         self.tableView.allowsMultipleSelectionDuringEditing = true
+        self.tableView.cellLayoutMarginsFollowReadableWidth = false
     }
     
     
@@ -196,22 +215,19 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool { return true }
     
-    //func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle { return .none }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
+    /*
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-        }
+        if editingStyle == .delete { }
     }
-    
+    */
+ 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
-            // delete item at indexPath
-            
+        let delete = UITableViewRowAction(style: .destructive, title: FeedbackMangerConstants.deleteText) { _, _ in
+            self.deleteFeedbackWithAlert {
+                self.feedbackItems[indexPath.section].remove(at: indexPath.row)
+                self.tableView.reloadSections(IndexSet(integer:indexPath.section), with: .fade)
+            }
         }
         return [delete]
     }
@@ -231,7 +247,7 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
                 self.feedbackItems[self.editingIndexPath!.section].insert(newFeedbackItem!, at: self.editingIndexPath!.row)
                 self.tableView.reloadRows(at: [self.editingIndexPath!], with: .fade)
             }
-            else { self.tableView.reloadSections(IndexSet(integer: editingIndexPath!.section), with: .fade) }
+            else {  self.tableView.reloadSections(IndexSet(integer: editingIndexPath!.section), with: .fade) }
             self.editingIndexPath = nil
         }
         else {

@@ -20,7 +20,7 @@
                     <rect key="frame" x="44" y="30" width="90" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="9yW-qN-L1I"/>
-                        <constraint firstAttribute="height" constant="20" id="SoT-gt-5Y2"/>
+                        <constraint firstAttribute="height" priority="999" constant="20" id="SoT-gt-5Y2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <nil key="textColor"/>
@@ -55,7 +55,7 @@
             </subviews>
             <constraints>
                 <constraint firstItem="Krl-o0-Etn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="4za-hF-md4"/>
-                <constraint firstItem="Krl-o0-Etn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="4" id="8qb-LG-QAE"/>
+                <constraint firstItem="Krl-o0-Etn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" priority="999" constant="4" id="8qb-LG-QAE"/>
                 <constraint firstItem="9Vp-WX-6se" firstAttribute="leading" secondItem="xmg-2q-qWo" secondAttribute="trailing" constant="23" id="VpU-va-1YV"/>
                 <constraint firstItem="xmg-2q-qWo" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="44" id="YRe-sj-0UV"/>
                 <constraint firstItem="PQ5-sh-5Yr" firstAttribute="centerY" secondItem="9Vp-WX-6se" secondAttribute="centerY" id="ekN-8O-BTP"/>

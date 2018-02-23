@@ -76,6 +76,9 @@ enum FeedbackMangerConstants {
     static let deleteWarningText = "Are you sure you want to delete?"
     static let deleteText = "Delete"
     static let cancelText = "Cancel"
+    static let editText = "Edit"
+    static let selectAllText = "Select all"
+    static let title = "Feedback"
     
     static let headerTitleLabelFontColor = UIColor.white
     static let requiredLabelFontColor = UIColor.red.withAlphaComponent(0.7)
@@ -84,7 +87,10 @@ enum FeedbackMangerConstants {
     static let titleLabelFont = UIFont.systemFont(ofSize: 17)
     static let requiredLabelFont = UIFont.systemFont(ofSize: 16)
     static let entryLabelFont = UIFont.systemFont(ofSize: 16)
+    static let titleAttributes:[NSAttributedStringKey:Any] = [.foregroundColor:UIColor.white, .font:UIFont.systemFont(ofSize: 24)]
     
+    static let navigationBarHeight: CGFloat = 64
+    static let toolbarHeight:CGFloat = 44
     static let mainTableHeaderHeight:CGFloat = 54
     static let mainTableRowHeight:CGFloat = 70
     static let checkMarkRadius: CGFloat = 11

@@ -16,6 +16,8 @@
 		FE0EB71E203E93860065218E /* FeedbackHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0EB71D203E93860065218E /* FeedbackHeader.swift */; };
 		FE30072C202354D4005E5526 /* FeedbackSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */; };
 		FE30072E20235519005E5526 /* FeedbackSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */; };
+		FE5E5B26203F1BF2006FAC77 /* FeedbackSummaryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E5B25203F1BF2006FAC77 /* FeedbackSummaryHeader.swift */; };
+		FE5E5B28203F1BFE006FAC77 /* FeedbackSummaryHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE5E5B27203F1BFE006FAC77 /* FeedbackSummaryHeader.xib */; };
 		FE852CF1202327160076D118 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF0202327160076D118 /* AppDelegate.swift */; };
 		FE852CF3202327160076D118 /* FeedbackManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE852CF2202327160076D118 /* FeedbackManagerViewController.swift */; };
 		FE852CF6202327160076D118 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE852CF4202327160076D118 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		FE0EB71D203E93860065218E /* FeedbackHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackHeader.swift; sourceTree = "<group>"; };
 		FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackSummaryCell.xib; sourceTree = "<group>"; };
 		FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSummaryCell.swift; sourceTree = "<group>"; };
+		FE5E5B25203F1BF2006FAC77 /* FeedbackSummaryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackSummaryHeader.swift; sourceTree = "<group>"; };
+		FE5E5B27203F1BFE006FAC77 /* FeedbackSummaryHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackSummaryHeader.xib; sourceTree = "<group>"; };
 		FE852CED202327160076D118 /* feedbackManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = feedbackManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE852CF0202327160076D118 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE852CF2202327160076D118 /* FeedbackManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManagerViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				FEA444DD203C489500EEE54C /* FeedbackTypes.swift */,
+				FE5E5B25203F1BF2006FAC77 /* FeedbackSummaryHeader.swift */,
+				FE5E5B27203F1BFE006FAC77 /* FeedbackSummaryHeader.xib */,
 				FE30072D20235519005E5526 /* FeedbackSummaryCell.swift */,
 				FE30072B202354D4005E5526 /* FeedbackSummaryCell.xib */,
 				FE0EB71D203E93860065218E /* FeedbackHeader.swift */,
@@ -160,6 +166,7 @@
 				FE852CF8202327160076D118 /* Assets.xcassets in Resources */,
 				FE30072C202354D4005E5526 /* FeedbackSummaryCell.xib in Resources */,
 				FE097891203D81B4002B3CDE /* FeedbackTextCell.xib in Resources */,
+				FE5E5B28203F1BFE006FAC77 /* FeedbackSummaryHeader.xib in Resources */,
 				FE852CF6202327160076D118 /* Main.storyboard in Resources */,
 				FE0EB71A203E77570065218E /* FeedbackEntryCell.xib in Resources */,
 				FE0EB71C203E93750065218E /* FeedbackHeader.xib in Resources */,
@@ -181,6 +188,7 @@
 				FE852CF3202327160076D118 /* FeedbackManagerViewController.swift in Sources */,
 				FE30072E20235519005E5526 /* FeedbackSummaryCell.swift in Sources */,
 				FE09788D203D6852002B3CDE /* FeedbackEditorViewController.swift in Sources */,
+				FE5E5B26203F1BF2006FAC77 /* FeedbackSummaryHeader.swift in Sources */,
 				FE852CF1202327160076D118 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

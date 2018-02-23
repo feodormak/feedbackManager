@@ -17,7 +17,8 @@ class FeedbackSummaryCell: UITableViewCell {
     var item : FeedbackItem? {
         didSet{
             if item != nil {
-                self.cellActionLabel.setImage(UIImage(named: "edit"), for: .normal)
+                self.editLabel.setImage(UIImage(named: "edit"), for: .normal)
+                self.editLabel.setTitleColor(.lightGray, for: .normal)
                 if let type = item!.pageType, let refID = item!.refID{
                     self.categoryLabel.text = FeedbackMangerConstants.categoryType[type]
                     switch type {
@@ -31,12 +32,12 @@ class FeedbackSummaryCell: UITableViewCell {
                 }
                 self.sectionLabel.text = item!.section
                 self.feedbackTypeLabel.text = FeedbackMangerConstants.typeLabel[item!.feedbackType]
-                
             }
         }
     }
     
     var delegate: FeedbackSummaryCellDelegate?
+    
     
     @IBOutlet weak var itemNumberLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -44,25 +45,44 @@ class FeedbackSummaryCell: UITableViewCell {
     @IBOutlet weak var sectionLabel: UILabel!
     @IBOutlet weak var feedbackTypeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var cellActionLabel: UIButton!
+    @IBOutlet weak var editLabel: UIButton!
+    //@IBOutlet weak var checkMark: UIButton!
     
+    @IBOutlet weak var leftEdgeConstraint: NSLayoutConstraint!
+    @IBOutlet weak var itemNumberLabelLeftConstraint: NSLayoutConstraint!
     
-    @IBAction func actionButton(_ sender: UIButton){ self.delegate?.editButtonTapped(cell: self) }
+    @IBAction func editButton(_ sender: UIButton){ self.delegate?.editButtonTapped(cell: self) }
+    
+    //@IBAction func checkButton(_ sender: UIButton) {
+        //self.delegate?.selectButtonTapped(cell: self)
+    //}
     
     static var identifier: String { return String(describing: self) }
     static var nib:UINib { return UINib(nibName: identifier, bundle: nil) }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.indentationLevel = 2
-        self.indentationWidth = 100
-    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
     
+        //checkMark.layer.cornerRadius = FeedbackMangerConstants.checkMarkRadius
+        //checkMark.layer.borderWidth = FeedbackMangerConstants.checkMarkBorderWidth
+        //checkMark.layer.borderColor = UIColor.lightGray.cgColor
+        
+        self.leftEdgeConstraint.constant = FeedbackMangerConstants.mainTableRowOffset * -1
+        self.itemNumberLabelLeftConstraint.constant = FeedbackMangerConstants.mainTableRowOffset + 8
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        self.editLabel.isEnabled = self.isEditing ? false : true
+    
+    }
+    
+   
 }

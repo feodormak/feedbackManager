@@ -84,6 +84,12 @@ enum FeedbackMangerConstants {
     static let titleLabelFont = UIFont.systemFont(ofSize: 17)
     static let requiredLabelFont = UIFont.systemFont(ofSize: 16)
     static let entryLabelFont = UIFont.systemFont(ofSize: 16)
+    
+    static let mainTableHeaderHeight:CGFloat = 54
+    static let mainTableRowHeight:CGFloat = 70
+    static let checkMarkRadius: CGFloat = 11
+    static let checkMarkBorderWidth: CGFloat = 1.5
+    static let mainTableRowOffset: CGFloat = 40
     //test data
     static let stationsID = ["WSSS", "WAAA", "WIPP", "RPVM", "ZUUU", "VTSP", "ZUCK", "VECC", "VOMM", "VOHS", "WMKK"]
     
@@ -117,6 +123,17 @@ class FeedbackItem {
         self.refID = refID
         self.section = section
         self.contentID = contentID
+    }
+}
+
+extension FeedbackItem: Equatable {
+    static func == (lhs: FeedbackItem, rhs: FeedbackItem) -> Bool{
+        return lhs.feedbackType == rhs.feedbackType &&
+            lhs.pageType == rhs.pageType &&
+            lhs.refID == rhs.refID &&
+            lhs.section == rhs.section &&
+            lhs.contentID == rhs.contentID &&
+            lhs.comments == rhs.comments        
     }
 }
 

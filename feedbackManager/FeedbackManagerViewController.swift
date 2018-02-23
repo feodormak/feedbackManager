@@ -16,13 +16,27 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     private let navigationBar = UINavigationBar(frame: CGRect.zero)
     
     private var feedbackItems:[[FeedbackItem]] = [[],[]]
+    private var selectedIndexPaths = [IndexPath]() {
+        didSet{ self.deleteButton.isEnabled = self.selectedIndexPaths.isEmpty ? false : true } }
     private var editingIndexPath: IndexPath?
+    
+    private lazy var addButton  = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(self.addFeedback))
+    private lazy var closeButton = UIBarButtonItem(title: "╳", style: .done, target: nil, action: #selector(self.closeManager))
+    private lazy var deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: #selector(self.deleteFeedback))
+    private lazy var editButton =  UIBarButtonItem(title: "Edit", style: .plain, target: nil, action: #selector(self.editFeedback))
+    private lazy var selectAllButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: #selector(self.selectAllRows))
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
         self.tableViewSetup()
         self.feedbackEditorViewController.delegate = self
+        self.selectedIndexPaths.removeAll()
+        self.selectAllButton.isEnabled = false
+        
+        //print(addBut, deleteButton.width, editButton.width, closeButton.width)
         
         //loaded with test data
         self.feedbackItems = [
@@ -39,9 +53,54 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     }
     
     @objc private func addFeedback() { self.launchFeedbackEditor(currentFeedbackItem: nil, mode: .new) }
-    @objc private func deleteFeedback() {}
-    @objc private func editFeedback() { self.tableView.isEditing = self.tableView.isEditing ? false : true }
-    @objc private func closeManager() { }
+    @objc private func deleteFeedback() {
+        if self.tableView.isEditing == true {
+            self.deleteFeedbackWithAlert {
+                self.tableView.setEditing(false, animated: true)
+                self.addButton.isEnabled = true
+                self.closeButton.isEnabled = true
+                if self.selectedIndexPaths.isEmpty != true {
+                    //var tempItems = self.feedbackItems
+                    var itemsToDelete: [[FeedbackItem]] = [[],[]]
+                    
+                    self.selectedIndexPaths.forEach{ itemsToDelete[$0.section].append(self.feedbackItems[$0.section][$0.row]) }
+                    itemsToDelete.enumerated().forEach{
+                        let index = $0.offset
+                        $0.element.forEach{
+                            let item = $0
+                            self.feedbackItems[index] = self.feedbackItems[index].filter{ $0 != item }
+                        }
+                    }
+                    self.tableView.reloadData()
+                    self.selectedIndexPaths.removeAll()
+                }
+            }
+        }
+    }
+    @objc private func editFeedback() {
+        self.selectedIndexPaths.removeAll()
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+        self.editButton.title = self.tableView.isEditing ? "Cancel" : "Edit"
+        self.selectAllButton.title = self.tableView.isEditing ? "Select all" : ""
+        self.selectAllButton.isEnabled = self.tableView.isEditing ? true : false
+        self.addButton.isEnabled = self.tableView.isEditing ? false : true
+        self.closeButton.isEnabled = self.tableView.isEditing ? false : true
+    }
+    @objc private func selectAllRows() {
+        if tableView.isEditing == true {
+            var allIndexPaths = [IndexPath]()
+            for section in 0..<self.tableView.numberOfSections {
+                for row in 0..<self.tableView.numberOfRows(inSection: section) { allIndexPaths.append(IndexPath(row: row, section: section)) }
+            }
+            allIndexPaths.forEach{
+                self.tableView.selectRow(at: $0, animated: false, scrollPosition: .none)
+                self.selectedIndexPaths.append($0)
+            }
+        }
+    }
+    @objc private func closeManager() {
+        //to be implemented on merge
+    }
     
     
     private func setupNavigationBar() {
@@ -54,12 +113,11 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         NSLayoutConstraint(item: self.navigationBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 64).isActive = true
         
         let navigationItem = UINavigationItem(title: "Feedback")
-        let addButton  = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(self.addFeedback))
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: #selector(self.deleteFeedback))
-        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: #selector(self.editFeedback))
-        let closeButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(self.closeManager))
-        navigationItem.leftBarButtonItem = addButton
-        navigationItem.rightBarButtonItems = [closeButton, editButton, deleteButton]
+    
+        //let spacerButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        navigationItem.leftBarButtonItems = [self.addButton, self.selectAllButton]
+        navigationItem.rightBarButtonItems = [self.closeButton, self.editButton, self.deleteButton]
         self.navigationBar.setItems([navigationItem], animated: false)
         
         self.navigationBar.barTintColor = UIColor.baseColor
@@ -77,12 +135,13 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.register(FeedbackSummaryHeader.nib, forHeaderFooterViewReuseIdentifier: FeedbackSummaryHeader.identifier)
         self.tableView.register(FeedbackSummaryCell.nib, forCellReuseIdentifier: FeedbackSummaryCell.identifier)
         
         self.tableView.backgroundColor = .lightGray
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.tableFooterView = UIView()
-        
+        self.tableView.allowsMultipleSelectionDuringEditing = true
     }
     
     
@@ -103,23 +162,59 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         return UITableViewCell()
     }
     
-    //UITableViewDelegate stuff
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: FeedbackSummaryHeader.identifier) as? FeedbackSummaryHeader {
+            switch section {
+            case 0: header.headerLabel.text = FeedbackMangerConstants.typeLabel[.exisitng]
+            case 1: header.headerLabel.text = FeedbackMangerConstants.typeLabel[.suggestion]
+            default: break
+            }
+            header.headerLabel.textColor = .white
+            header.categoryLabel.textColor = .white
+            header.sectionLabel.textColor = .white
+            header.pageLabel.textColor = .white
+            return header
+        }
+        else { return UIView() }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
+    //UITableViewDelegate stuff
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { return FeedbackMangerConstants.mainTableHeaderHeight }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return FeedbackMangerConstants.mainTableRowHeight }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if tableView.isEditing == true {
+            if self.selectedIndexPaths.contains(indexPath) == false { self.selectedIndexPaths.append(indexPath) }
+        }
+        else { tableView.deselectRow(at: indexPath, animated: true) }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing == true && self.selectedIndexPaths.contains(indexPath) == true { self.selectedIndexPaths = self.selectedIndexPaths.filter{ $0 != indexPath } }
     }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool { return true }
     
+    //func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle { return .none }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "delete") { (action, indexPath) in
+            // delete item at indexPath
+            
+        }
+        return [delete]
+    }
     //FeedbackSummaryCellDelegate conformance
     func editButtonTapped(cell: UITableViewCell) {
         if let indexPath = self.tableView.indexPath(for: cell){
@@ -157,6 +252,14 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         self.managePresentingViewControllers(toPresent: self.editorNavigationController)
     }
     
+    private func deleteFeedbackWithAlert(deleteCodeBlock: @escaping () -> Void) {
+        let alert = UIAlertController(title: FeedbackMangerConstants.deleteWarningTitle , message: FeedbackMangerConstants.deleteWarningText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: FeedbackMangerConstants.cancelText, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: FeedbackMangerConstants.deleteText, style: .destructive, handler: { _ in
+            deleteCodeBlock()
+        }))
+        self.managePresentingViewControllers(toPresent: alert)
+    }
     
     private func managePresentingViewControllers(toPresent: UIViewController) {
         if let _ = self.presentedViewController { self.dismiss(animated: true, completion: nil) }
@@ -165,7 +268,6 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         }
         else { self.present(toPresent, animated: true, completion: nil ) }
     }
-    
 }
 
 

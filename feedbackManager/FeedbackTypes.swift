@@ -79,6 +79,7 @@ enum FeedbackMangerConstants {
     static let editText = "Edit"
     static let selectAllText = "Select all"
     static let title = "Feedback"
+    static let sendText = "Send"
     
     static let headerTitleLabelFontColor = UIColor.white
     static let requiredLabelFontColor = UIColor.red.withAlphaComponent(0.7)

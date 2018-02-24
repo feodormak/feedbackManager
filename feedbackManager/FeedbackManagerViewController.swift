@@ -24,10 +24,10 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
     private lazy var addButton  = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: #selector(self.addFeedback))
     private lazy var closeButton = UIBarButtonItem(title: "╳", style: .done, target: nil, action: #selector(self.closeManager))
     private lazy var deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: #selector(self.deleteFeedback))
-    private lazy var editButton =  UIBarButtonItem(title: "Edit", style: .plain, target: nil, action: #selector(self.editFeedback))
-    private lazy var selectAllButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: #selector(self.selectAllRows))
-    
-
+    private lazy var editButton =  UIBarButtonItem(title: FeedbackMangerConstants.editText, style: .plain, target: nil, action: #selector(self.editFeedback))
+    private lazy var selectAllButton = UIBarButtonItem(title: nil, style: .plain, target: nil, action: #selector(self.selectAllRows))
+    private lazy var sendButton = UIBarButtonItem(title: FeedbackMangerConstants.sendText, style: .plain, target: nil, action: #selector(self.sendFeedback))
+    private lazy var uploadStatusLabel = UIBarButtonItem(title:"Status", style: .plain, target: nil, action: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +107,9 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         //to be implemented on merge
     }
     
+    @objc private func sendFeedback() {
+        //to be implemented on merge
+    }
     
     private func setupNavigationBar() {
         self.navigationBar.translatesAutoresizingMaskIntoConstraints = false
@@ -132,14 +135,24 @@ class FeedbackManagerViewController: UIViewController, UITableViewDataSource, UI
         self.view.addSubview(self.toolBar)
         self.toolBar.translatesAutoresizingMaskIntoConstraints = false
         
-        
         NSLayoutConstraint(item: self.toolBar, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: self.toolBar, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: self.toolBar, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: self.toolBar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: FeedbackMangerConstants.toolbarHeight).isActive = true
         
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let leftButton: UIBarButtonItem = {
+            let button = UIButton()
+            button.setTitle(FeedbackMangerConstants.sendText, for: .normal)
+            button.setTitleColor(UIColor.baseColor, for: .normal)
+            return UIBarButtonItem(customView: button)
+        }()
+        
+        self.toolBar.items = [leftButton,flexibleSpace,self.uploadStatusLabel,flexibleSpace,self.sendButton]
+        
         self.toolBar.barTintColor = UIColor.baseColor
-        self.toolBar.setItems(nil, animated: false)
+        self.toolBar.tintColor = .white
     }
     
     private func tableViewSetup(){
